@@ -2,7 +2,6 @@
 Knockout.js custom bindings
 
 ## List of bindings
-============
 * Custom binding for [multiple-select](http://wenzhixin.net.cn/p/multiple-select/docs/) jQuery plugin
 
 ## LICENSE
