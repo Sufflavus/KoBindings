@@ -1,0 +1,88 @@
+<html>
+	<head>
+		<meta name="Content-Type" content="text/html; charset=utf8"/>				
+		<title>Multi select demo</title>	
+		<link rel="stylesheet" href="libs/MultipleSelect/css/multiple-select.css" />
+		<link rel="stylesheet" href="css/demo.common.css" />
+		<style>
+			select{
+				width: 200px;
+			}	
+		</style>
+	</head>
+	<body>
+		<div class="content">
+			<div>
+				<h1>Examples for multiple select knockout binding</h1>
+				Multiple select is a jQuery plugin to select multiple elements with checkboxes: <a href="http://wenzhixin.net.cn/p/multiple-select/docs/" target="blank">Multiple select</a>
+			</div>
+			<div class="example-block">	
+				<h2>Multi select with placeholder but without 'Select all'</h2>
+				<div class="element">
+					<label>Month</label>
+					<select data-bind="options: monthes1, multiSelect: {selectedValues: selectedMonthes1, pluginOptions: {placeholder: 'Here is the placeholder', selectAll: false}}"></select>	
+				</div>
+				<div class="test">
+					Selected items: 
+					<span data-bind="visible: selectedMonthes1().length === 0"> - </span>
+					<span data-bind="foreach: selectedMonthes1">
+						<span data-bind="text: $data"></span>
+					</span>	
+				</div>	
+				<div class="clear-fix"></div>				
+			</div>
+			<div class="example-block">
+				<h2>Multi select with selected items</h2>
+				<div class="element">					
+					<label>Month</label>
+					<select data-bind="options: monthes2, multiSelect: {selectedValues: selectedMonthes2, pluginOptions: {placeholder: 'Here is the placeholder', selectAll: true}}"></select>
+				</div>
+				<div class="test">
+					Selected items: 
+					<span data-bind="visible: selectedMonthes2().length === 0"> - </span>
+					<span data-bind="foreach: selectedMonthes2">
+						<span data-bind="text: $data"></span>
+					</span>	
+				</div>	 	
+				<div class="clear-fix"></div>        
+			</div>
+			<div class="example-block">
+				<h2>Multi select with object items</h2>
+				<div class="element">	
+					<label>Month</label>
+					<select data-bind="options: monthes3, optionsText: 'name', optionsValue: 'id', multiSelect: {selectedValues: selectedMontheIds3, optionsText: 'name', optionsValue: 'id', pluginOptions: {placeholder: 'Here is the placeholder', selectAll: false}}"></select>
+				</div>
+				<div class="test">				
+					Selected ids: 
+					<span data-bind="visible: selectedMontheIds3().length === 0"> - </span>					
+					<span data-bind="foreach: selectedMontheIds3">
+						<span data-bind="text: $data"></span>
+					</span>	
+				</div>
+				<div class="clear-fix"></div>	 	        
+			</div>
+		</div>	
+
+
+
+		<script src="libs/jQuery/jquery-1.11.2.min.js"></script>
+		<script src="libs/MultipleSelect/js/jquery.multiple.select.js"></script>
+		<script src="libs/Knockout/knockout-3.2.0.js"></script>
+		<script src="../src/ko-multi-select-binding.js"></script>
+		<script>
+		    $(function() {
+		    	var viewModel = {
+		    		monthes1: ko.observableArray(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']),
+		    		selectedMonthes1: ko.observableArray([]),
+
+		    		monthes2: ko.observableArray(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']),
+		    		selectedMonthes2: ko.observableArray(['February', 'March']),
+
+		    		monthes3: ko.observableArray([{id: 1, name: 'January'}, {id: 2, name: 'February'}, {id: 3, name: 'March'}, {id: 4, name: 'April'}, {id: 5, name: 'May'}, {id: 6, name: 'June'}, {id: 7, name: 'July'}, {id: 8, name: 'August'}, {id: 9, name: 'September'}, {id: 10, name: 'October'}, {id: 11, name: 'November'}, {id: 12, name: 'December'}]),
+		    		selectedMontheIds3: ko.observableArray([8]),
+		    	};
+		    	ko.applyBindings(viewModel);		    	
+		    });
+		</script>
+	</body>
+</html>
