@@ -1,6 +1,10 @@
 # KoBindings
 Knockout.js custom bindings
 
-List of bindings
+## List of bindings
 ============
-* Custom binding for multi-select jQuery plugin: [Multiple select](http://wenzhixin.net.cn/p/multiple-select/docs/)
+* Custom binding for [multiple-select](http://wenzhixin.net.cn/p/multiple-select/docs/) jQuery plugin
+
+## LICENSE
+
+[The MIT License](https://github.com/Sufflavus/KoBindings/blob/master/LICENSE)
