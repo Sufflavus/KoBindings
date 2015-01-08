@@ -20,7 +20,7 @@
 				<h2>Multi select with placeholder but without 'Select all'</h2>
 				<div class="element">
 					<label>Month</label>
-					<select data-bind="options: monthes1, multiSelect: {selectedValues: selectedMonthes1, pluginOptions: {placeholder: 'Here is the placeholder', selectAll: false}}"></select>	
+					<select data-bind="options: monthes1, multiSelect: {selectedValues: selectedMonthes1, multiSelectConfig: {placeholder: 'Here is the placeholder', selectAll: false}}"></select>	
 				</div>
 				<div class="test">
 					Selected items: 
@@ -35,7 +35,7 @@
 				<h2>Multi select with selected items</h2>
 				<div class="element">					
 					<label>Month</label>
-					<select data-bind="options: monthes2, multiSelect: {selectedValues: selectedMonthes2, pluginOptions: {placeholder: 'Here is the placeholder', selectAll: true}}"></select>
+					<select data-bind="options: monthes2, multiSelect: {selectedValues: selectedMonthes2, multiSelectConfig: {placeholder: 'Here is the placeholder', selectAll: true}}"></select>
 				</div>
 				<div class="test">
 					Selected items: 
@@ -50,7 +50,7 @@
 				<h2>Multi select with object items</h2>
 				<div class="element">	
 					<label>Month</label>
-					<select data-bind="options: monthes3, optionsText: 'name', optionsValue: 'id', multiSelect: {selectedValues: selectedMontheIds3, optionsText: 'name', optionsValue: 'id', pluginOptions: {placeholder: 'Here is the placeholder', selectAll: false}}"></select>
+					<select data-bind="options: monthes3, optionsText: 'name', optionsValue: 'id', multiSelect: {selectedValues: selectedMontheIds3, optionsText: 'name', optionsValue: 'id', multiSelectConfig: {placeholder: 'Here is the placeholder', selectAll: false}}"></select>
 				</div>
 				<div class="test">				
 					Selected ids: 

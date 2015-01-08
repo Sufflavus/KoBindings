@@ -7,16 +7,13 @@ ko.bindingHandlers.multiSelect = function(ko) {
 	function init(element, valueAccessor, allBindings, viewModel, bindingContext) {			
 		var $element = $(element);	
 		var bindingValue = valueAccessor() || {};			
-		var options = bindingValue.pluginOptions || {};	
+		var multiSelectConfig = bindingValue.multiSelectConfig || {};	
 		
-		options.onClick = updateSelectedValuesBinding;		 
-		options.onCheckAll = updateSelectedValuesBinding;
-		 
-		options.onUncheckAll = function() {						
-			bindingValue.selectedValues([]);			
-		 };
+		multiSelectConfig.onClick = updateSelectedValuesBinding;		 
+		multiSelectConfig.onCheckAll = updateSelectedValuesBinding;		 
+		multiSelectConfig.onUncheckAll = updateSelectedValuesBinding;
 			
-		$element.multipleSelect(options);
+		$element.multipleSelect(multiSelectConfig);
 		
 		if(bindingValue.selectedValues){			
 			var valueUnwrapped = ko.unwrap(bindingValue.selectedValues);
