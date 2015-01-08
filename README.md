@@ -7,8 +7,6 @@
 ##1. ko-multi-select-binding
 A KnockoutJS custom binding that applies a [multiple-select](http://wenzhixin.net.cn/p/multiple-select/docs/) to the standart 'select' element
 
-A KnockoutJS custom binding that applies a [multiple-select](http://wenzhixin.net.cn/p/multiple-select/docs/) to the standard 'select' element
-
 ###Setup & Dependencies
   1.  [jQuery](http://jquery.com/download/) 1.11.2 or later
   2.  [KnockoutJS](http://knockoutjs.com/downloads/index.html) 3.2.0 or later  
