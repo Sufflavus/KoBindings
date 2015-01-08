@@ -2,11 +2,9 @@
 [Knockout.js](http://knockoutjs.com/) custom bindings
 
 ## List of bindings
-----
 1. ko-multi-select-binding - custom binding for [multiple-select](http://wenzhixin.net.cn/p/multiple-select/docs/) jQuery plugin
 
 ##1. ko-multi-select-binding
-----
 A KnockoutJS custom binding that applies a [multiple-select](http://wenzhixin.net.cn/p/multiple-select/docs/) to the standart 'select' element
 
 ###Setup & Dependencies
