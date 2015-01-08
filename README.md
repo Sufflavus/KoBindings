@@ -30,13 +30,18 @@ A KnockoutJS custom binding that applies a [multiple-select](http://wenzhixin.ne
 A simple multi-select
 
 ```html
-<select data-bind="options: myObservableArray, multiSelect: {selectedValues: myObservableArrayWithSelectedItems}"></select>
+<select data-bind="options: myObservableArray, 
+    multiSelect: {selectedValues: myObservableArrayWithSelectedItems}">
+</select>
 ```
 
 `multiSelectConfig` parameter is used to configure a multi-select plugin. Use [documentation](http://wenzhixin.net.cn/p/multiple-select/docs/) to build `multiSelectConfig` object.  
 
 ```html
-<select data-bind="options: myObservableArray, multiSelect: {selectedValues: myObservableArrayWithSelectedItems, multiSelectConfig: {placeholder: 'Here is the placeholder', selectAll: false}}"></select>
+<select data-bind="options: myObservableArray, 
+    multiSelect: {selectedValues: myObservableArrayWithSelectedItems, 
+    multiSelectConfig: {placeholder: 'Here is the placeholder', selectAll: false}}">
+</select>
 ```
 
 ###Examples
@@ -46,7 +51,8 @@ A simple multi-select
 <script type="text/javascript">
     var viewModel = {
         // These are the initial options
-        availableMonthes: ko.observableArray(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']),
+        availableMonthes: ko.observableArray(['January', 'February', 'March', 'April', 
+            'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']),
         
         // 'February', 'March' are selected by default
 	    selectedMonthes: ko.observableArray(['February', 'March'])
@@ -55,7 +61,10 @@ A simple multi-select
 ```
 
 ```html
-<select data-bind="options: availableMonthes, multiSelect: {selectedValues: selectedMonthes, multiSelectConfig: {placeholder: 'Here is the placeholder', selectAll: true}}"></select>
+<select data-bind="options: availableMonthes, 
+    multiSelect: {selectedValues: selectedMonthes, 
+    multiSelectConfig: {placeholder: 'Here is the placeholder', selectAll: true}}">
+</select>
 ```
 
 See more working [examples](https://github.com/Sufflavus/KoBindings/blob/master/demos/multiple-select.html)
