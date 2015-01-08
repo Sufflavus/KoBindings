@@ -7,16 +7,20 @@
 ##1. ko-multi-select-binding
 A KnockoutJS custom binding that applies a [multiple-select](http://wenzhixin.net.cn/p/multiple-select/docs/) to the standart 'select' element
 
+A KnockoutJS custom binding that applies a [multiple-select](http://wenzhixin.net.cn/p/multiple-select/docs/) to the standard 'select' element
+
 ###Setup & Dependencies
-  1.  jQuery 1.11.2 or later
-  2.  KnockoutJS 3.2.0 or later  
-  3.  jQuery plugin for multiple-select 1.1.0 or later
+  1.  [jQuery](http://jquery.com/download/) 1.11.2 or later
+  2.  [KnockoutJS](http://knockoutjs.com/downloads/index.html) 3.2.0 or later  
+  3.  jQuery plugin [multiple-select](http://wenzhixin.net.cn/p/multiple-select/docs/) 1.1.0 or later
+  4.  ko-multi-select-binding.js
 
 ```html
 <head>
     <link rel="stylesheet" href="libs/MultipleSelect/css/multiple-select.css" />
 </head>
 <body>
+
     <script src="libs/jQuery/jquery-1.11.2.min.js"></script>
     <script src="libs/MultipleSelect/js/jquery.multiple.select.js"></script>
     <script src="libs/Knockout/knockout-3.2.0.js"></script>
@@ -31,7 +35,7 @@ A simple multi-select
 <select data-bind="options: myObservableArray, multiSelect: {selectedValues: myObservableArrayWithSelectedItems}"></select>
 ```
 
-Design your own multi-select using http://wenzhixin.net.cn/p/multiple-select/docs/ to build the `multiSelectConfig` object.
+`multiSelectConfig` parameter is used to configure a multi-select plugin. Use [documentation](http://wenzhixin.net.cn/p/multiple-select/docs/) to build `multiSelectConfig` object.  
 
 ```html
 <select data-bind="options: myObservableArray, multiSelect: {selectedValues: myObservableArrayWithSelectedItems, multiSelectConfig: {placeholder: 'Here is the placeholder', selectAll: false}}"></select>
@@ -56,7 +60,7 @@ Design your own multi-select using http://wenzhixin.net.cn/p/multiple-select/doc
 <select data-bind="options: availableMonthes, multiSelect: {selectedValues: selectedMonthes, multiSelectConfig: {placeholder: 'Here is the placeholder', selectAll: true}}"></select>
 ```
 
-See more working examples https://github.com/Sufflavus/KoBindings/blob/master/demos/multiple-select.html
+See more working [examples](https://github.com/Sufflavus/KoBindings/blob/master/demos/multiple-select.html)
 
 ###Parameters
 * selectedValues: an observable array with selected items.
