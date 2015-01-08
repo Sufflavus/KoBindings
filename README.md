@@ -2,16 +2,14 @@
 [Knockout.js](http://knockoutjs.com/) custom bindings
 
 ## List of bindings
-* ko-multi-select-binding - custom binding for [multiple-select](http://wenzhixin.net.cn/p/multiple-select/docs/) jQuery plugin
+----
+1. ko-multi-select-binding - custom binding for [multiple-select](http://wenzhixin.net.cn/p/multiple-select/docs/) jQuery plugin
 
-ko-multi-select-binding
-========================
-
+##1. ko-multi-select-binding
+----
 A KnockoutJS custom binding that applies a [multiple-select](http://wenzhixin.net.cn/p/multiple-select/docs/) to the standart 'select' element
 
-Setup & Dependencies
---------------------
-
+###Setup & Dependencies
   1.  jQuery 1.11.2 or later
   2.  KnockoutJS 3.2.0 or later  
   3.  jQuery plugin for multiple-select 1.1.0 or later
@@ -28,9 +26,7 @@ Setup & Dependencies
 </body>
 ```
 
-Usage
------
-
+###Usage
 A simple multi-select
 
 ```html
@@ -43,8 +39,7 @@ Design your own multi-select using http://wenzhixin.net.cn/p/multiple-select/doc
 <select data-bind="options: myObservableArray, multiSelect: {selectedValues: myObservableArrayWithSelectedItems, multiSelectConfig: {placeholder: 'Here is the placeholder', selectAll: false}}"></select>
 ```
 
-Examples
------
+###Examples
 **Example: Multi select with selected items**
 
 ```js
@@ -65,8 +60,7 @@ Examples
 
 See more working examples https://github.com/Sufflavus/KoBindings/blob/master/demos/multiple-select.html
 
-Parameters
------
+###Parameters
 * selectedValues: an observable array with selected items.
 * multiSelectConfig: set specific settings for multi-select plugin
 
