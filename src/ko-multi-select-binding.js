@@ -25,9 +25,21 @@ ko.bindingHandlers.multiSelect = function(ko) {
 			bindingValue.selectedValues(selectedItems);		
 		}
 	}
+	
+	function update(element, valueAccessor, allBindings) {
+        var value = valueAccessor();
+        var valueUnwrapped = ko.unwrap(value);
+        if (valueUnwrapped.selectedValues) {
+            var selectedValues = ko.unwrap(valueUnwrapped.selectedValues);
+            if (selectedValues) {
+                $(element).multipleSelect("setSelects", selectedValues);
+            }
+        }
+    }
 
-	return {
-		init: init
-	};
+    return {
+        init: init,
+        update: update
+    };	
 	
 }(ko);
