@@ -9,7 +9,13 @@ ko.bindingHandlers.multiSelect = function(ko) {
 		var bindingValue = valueAccessor() || {};			
 		var multiSelectConfig = bindingValue.multiSelectConfig || {};	
 		
-		multiSelectConfig.onClick = updateSelectedValuesBinding;		 
+		var initialEvents = {
+			onClick: multiSelectConfig.onClick,
+			onCheckAll: multiSelectConfig.onCheckAll,
+			onUncheckAll: multiSelectConfig.onUncheckAll
+		};
+		
+		multiSelectConfig.onClick = updateSelectedValuesBinding;	 
 		multiSelectConfig.onCheckAll = updateSelectedValuesBinding;		 
 		multiSelectConfig.onUncheckAll = updateSelectedValuesBinding;
 			
