@@ -18,16 +18,8 @@
 			<div class="example-block">	
 				<h2>Simple file upload with call back after upload</h2>
 				<div class="element">
-					<div data-bind="dropzone: { url: fileUploadUrl, acceptedFiles: acceptedFiles, uploadMultiple: true, onUploadComplete: onUploadComplete }" class="dz-clickable dz-started">
-						<div class="dz-default dz-message" data-dz-message="">
-					        <span>Drop files here to upload</span>
-					    </div>
-					</div>	
-					<!-- <div id="mydiv" class="dz-default dz-message">
-						<div class="dz-default dz-message" data-dz-message="">
-					        <span>Drop files here to upload</span>
-					    </div>
-					</div> -->
+					<div data-bind="dropzone: { onUploadComplete: onUploadComplete, dropzoneOptions: {url: fileUploadUrl, acceptedFiles: acceptedFiles, uploadMultiple: true} }">						
+					</div>						
 				</div>
 				<div class="test">					
 				</div>	
@@ -40,17 +32,17 @@
 		<script src="libs/Dropzone/js/dropzone.js"></script>
 		<script src="libs/Dropzone/js/dropzone-amd-module.js"></script>
 		<script src="../src/ko-dropzone-binding.js"></script>
+
 		<script>
 		    $(function() {
 		    	var viewModel = {
 		    		fileUploadUrl: "http://localhost:8090",
 		    		acceptedFiles: ".png",
 		    		onUploadComplete: function(file){
-		    			alter("Complete");
+		    			console.log(file);
 		    		}
 		    	};
-		    	ko.applyBindings(viewModel);		 
-		    	//var myDropzone = new Dropzone("div#mydiv", { url: "/file/post"});   	
+		    	ko.applyBindings(viewModel);		 		    	   	
 		    });
 		</script>
 	</body>

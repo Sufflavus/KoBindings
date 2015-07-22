@@ -4,6 +4,8 @@
 ## List of bindings
 1. ko-multi-select-binding - custom binding for [multiple-select](http://wenzhixin.net.cn/p/multiple-select/docs/) jQuery plugin
 
+2. ko-dropzone-binding - custom binding for [dropzonejs](http://www.dropzonejs.com/)
+
 ##1. ko-multi-select-binding
 A KnockoutJS custom binding that applies a [multiple-select](http://wenzhixin.net.cn/p/multiple-select/docs/) to the standart 'select' element
 

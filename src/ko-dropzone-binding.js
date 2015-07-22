@@ -2,32 +2,33 @@
 // http://www.dropzonejs.com/
 // https://github.com/enyo/dropzone/tree/master/dist
 
-ko.bindingHandlers.dropzone = function(ko, Dropzone) {
+ko.bindingHandlers.dropzone = function($, ko, Dropzone) {
 
-	function init(element, valueAccessor, allBindings, viewModel, bindingContext) {			
-		debugger;	
-        Dropzone.autoDiscover = false;	
-        var dropzoneOptions = valueAccessor() || {};        
-        var onUploadComplete = dropzoneOptions.onUploadComplete;
-        dropzoneOptions.onUploadComplete = null;
-        //dropzoneOptions.autoDiscover = false;
+    function init(element, valueAccessor, allBindings, viewModel, bindingContext) {		    	        
+        var bindingValue = valueAccessor() || {};        
+        var onUploadComplete = bindingValue.onUploadComplete;
+        var dropzoneOptions = bindingValue.dropzoneOptions || {};            
+        dropzoneOptions.init = initDropzone;
+        
         var $element = $(element);
-        //var elementId = "dropzone" + (new Date()).getTime();
-        //$element.attr("id", elementId);
-        //Dropzone.options[elementId] = dropzoneOptions;
-        var myDropzone = $element.dropzone(dropzoneOptions);
-        //myDropzone.addClass("dropzone");
+        var elementId = "dz" + (new Date()).getTime();
+        $element.attr("id", elementId);
 
-        myDropzone.on("complete", function (file) {                
-            myDropzone.removeFile(file);
-            if (onUploadComplete) {
-                onUploadComplete(file);
-            }
-        });
+        Dropzone.options[elementId] = dropzoneOptions;       
 
-		//$("div#mydiv").dropzone({ url: "/file/post" });
+        $element.addClass("dropzone");    
 
-		//var myDropzone = new Dropzone("div#mydiv", { url: "/file/post"});
+        function initDropzone(){
+            this.on("complete", function (file) { 
+                console.log(file);     
+                if(file.status == "error"){          
+                    //this.removeFile(file);
+                }
+                if (onUploadComplete) {
+                    onUploadComplete(file);
+                }
+            });            
+        }            
 	}
 	
 	function update(element, valueAccessor, allBindings) {        
@@ -38,4 +39,4 @@ ko.bindingHandlers.dropzone = function(ko, Dropzone) {
         update: update
     };	
 	
-}(ko, Dropzone);
+}(jQuery, ko, Dropzone);
