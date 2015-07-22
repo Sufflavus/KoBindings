@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<meta name="Content-Type" content="text/html; charset=utf8"/>				
+		<title>Dropzone demo</title>	
+		<link rel="stylesheet" href="libs/Dropzone/css/basic.css" />
+		<link rel="stylesheet" href="libs/Dropzone/css/dropzone.css" />
+		<link rel="stylesheet" href="css/demo.common.css" />
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<div class="content">
+			<div>
+				<h1>Examples for dropzone knockout binding</h1>
+				Dropzone is a JavaScript libruary for files uploading: <a href="http://www.dropzonejs.com/" target="blank">Dropzone</a>
+			</div>
+			<div class="example-block">	
+				<h2>Simple file upload with call back after upload</h2>
+				<div class="element">
+					<div data-bind="dropzone: { url: fileUploadUrl, acceptedFiles: acceptedFiles, uploadMultiple: true, onUploadComplete: onUploadComplete }" class="dz-clickable dz-started">
+						<div class="dz-default dz-message" data-dz-message="">
+					        <span>Drop files here to upload</span>
+					    </div>
+					</div>	
+					<!-- <div id="mydiv" class="dz-default dz-message">
+						<div class="dz-default dz-message" data-dz-message="">
+					        <span>Drop files here to upload</span>
+					    </div>
+					</div> -->
+				</div>
+				<div class="test">					
+				</div>	
+				<div class="clear-fix"></div>				
+			</div>			
+		</div>	
+
+		<script src="libs/jQuery/jquery-1.11.2.min.js"></script>		
+		<script src="libs/Knockout/knockout-3.2.0.js"></script>
+		<script src="libs/Dropzone/js/dropzone.js"></script>
+		<script src="libs/Dropzone/js/dropzone-amd-module.js"></script>
+		<script src="../src/ko-dropzone-binding.js"></script>
+		<script>
+		    $(function() {
+		    	var viewModel = {
+		    		fileUploadUrl: "http://localhost:8090",
+		    		acceptedFiles: ".png",
+		    		onUploadComplete: function(file){
+		    			alter("Complete");
+		    		}
+		    	};
+		    	ko.applyBindings(viewModel);		 
+		    	//var myDropzone = new Dropzone("div#mydiv", { url: "/file/post"});   	
+		    });
+		</script>
+	</body>
+</html>
