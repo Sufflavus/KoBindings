@@ -42,7 +42,7 @@ ko.bindingHandlers.multiSelect = function(ko) {
             }
         }
     }
-
+	
     return {
         init: init,
         update: update

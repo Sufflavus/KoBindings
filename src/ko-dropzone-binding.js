@@ -5,30 +5,16 @@
 ko.bindingHandlers.dropzone = function($, ko, Dropzone) {
 
     function init(element, valueAccessor, allBindings, viewModel, bindingContext) {		    	        
-        var bindingValue = valueAccessor() || {};        
-        var onUploadComplete = bindingValue.onUploadComplete;
+        var bindingValue = valueAccessor() || {};               
         var dropzoneOptions = bindingValue.dropzoneOptions || {};            
-        dropzoneOptions.init = initDropzone;
-        
+
         var $element = $(element);
         var elementId = "dz" + (new Date()).getTime();
         $element.attr("id", elementId);
 
         Dropzone.options[elementId] = dropzoneOptions;       
 
-        $element.addClass("dropzone");    
-
-        function initDropzone(){
-            this.on("complete", function (file) { 
-                console.log(file);     
-                if(file.status == "error"){          
-                    //this.removeFile(file);
-                }
-                if (onUploadComplete) {
-                    onUploadComplete(file);
-                }
-            });            
-        }            
+        $element.addClass("dropzone");           
 	}
 	
 	function update(element, valueAccessor, allBindings) {        
