@@ -1,6 +1,9 @@
 // Custom binding for dropzonejs jQuery plugin
 // http://www.dropzonejs.com/
 // https://github.com/enyo/dropzone/tree/master/dist
+//
+// @author Sufflavus https://github.com/Sufflavus
+// @version 1.1.0 
 
 ko.bindingHandlers.dropzone = function($, ko, Dropzone) {
 

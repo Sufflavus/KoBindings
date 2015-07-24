@@ -1,6 +1,9 @@
 // Custom binding for multi-select jQuery plugin
 // http://wenzhixin.net.cn/p/multiple-select/docs/
 // https://github.com/wenzhixin/multiple-select
+//
+// @author Sufflavus https://github.com/Sufflavus
+// @version 1.1.0 
 
 ko.bindingHandlers.multiSelect = function(ko) {
 
@@ -15,10 +18,30 @@ ko.bindingHandlers.multiSelect = function(ko) {
 			onUncheckAll: multiSelectConfig.onUncheckAll
 		};
 		
-		multiSelectConfig.onClick = updateSelectedValuesBinding;	 
-		multiSelectConfig.onCheckAll = updateSelectedValuesBinding;		 
-		multiSelectConfig.onUncheckAll = updateSelectedValuesBinding;
+		multiSelectConfig.onClick = function(){ 
+			updateSelectedValuesBinding();	 
+
+			if(initialEvents.onClick){
+				initialEvents.onClick();
+			}			
+		};
+
+		multiSelectConfig.onCheckAll = function(){ 
+			updateSelectedValuesBinding();	
+
+			if(initialEvents.onCheckAll){
+				initialEvents.onCheckAll();
+			}			 
+		};
+	 
+		multiSelectConfig.onUncheckAll = function(){ 
+			updateSelectedValuesBinding();	
 			
+			if(initialEvents.onUncheckAll){
+				initialEvents.onUncheckAll();
+			}			 
+		};
+
 		$element.multipleSelect(multiSelectConfig);
 		
 		if(bindingValue.selectedValues){			

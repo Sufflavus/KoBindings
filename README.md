@@ -73,7 +73,50 @@ See more working [examples](https://github.com/Sufflavus/KoBindings/blob/master/
 
 ###Parameters
 * selectedValues: an observable array with selected items.
-* multiSelectConfig: set specific settings for multi-select plugin
+* multiSelectConfig: set specific settings for multi-select plugin (regular js-object)
+
+##2. ko-dropzone-binding
+A KnockoutJS custom binding that applies a [dropzone](http://www.dropzonejs.com/) to the standart 'div' element
+
+###Setup & Dependencies
+  1.  [jQuery](http://jquery.com/download/) 1.11.2 or later
+  2.  [KnockoutJS](http://knockoutjs.com/downloads/index.html) 3.2.0 or later  
+  3.  [Dropzonejs](http://www.dropzonejs.com/) 4.0.0 or later
+  4.  ko-dropzone-binding.js
+
+```html
+<head>
+    <link rel="stylesheet" href="libs/Dropzone/css/basic.css" />
+    <link rel="stylesheet" href="libs/Dropzone/css/dropzone.css" />
+</head>
+<body>
+
+    <script src="libs/jQuery/jquery-1.11.2.min.js"></script>    
+    <script src="libs/Knockout/knockout-3.2.0.js"></script>
+    <script src="libs/Dropzone/js/dropzone.js"></script>        
+    <script src="../src/ko-dropzone-binding.js"></script>    
+</body>
+```
+###Usage
+A simple dropzone
+
+```html
+<div data-bind="dropzone: { dropzoneOptions: {url: fileUploadUrl } }">
+</div>     
+```
+
+`dropzoneOptions` parameter is used to configure a Dropzone plugin. Use [documentation](http://www.dropzonejs.com/#configuration-options) to build `dropzoneOptions` object. You might also add [events'](http://www.dropzonejs.com/#configuration-options) handlers in dropzoneOptions, eg [init](http://www.dropzonejs.com/#config-init) or [complete](http://www.dropzonejs.com/#event-complete) etc.
+
+```html
+<div data-bind="dropzone: { dropzoneOptions: {url: fileUploadUrl, acceptedFiles: '.png', uploadMultiple: true, init: initDropzone, complete: onUploadComplete } }"> 
+</div>
+```
+See working [example](https://github.com/Sufflavus/KoBindings/blob/master/demos/dropzone.html)
+
+###Parameters
+* dropzoneOptions: set specific settings for multi-select plugin (regular js-object)
+
+**Note:** Parameter [url](http://www.dropzonejs.com/#config-url) has to be specified in object dropzoneOptions. You can also provide a function that will be called with files and must return the url  
 
 ## LICENSE
 [The MIT License](https://github.com/Sufflavus/KoBindings/blob/master/LICENSE)
