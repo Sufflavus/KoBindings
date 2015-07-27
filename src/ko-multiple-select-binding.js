@@ -1,24 +1,24 @@
-// Custom binding for multi-select jQuery plugin
+// Custom binding for multiple select jQuery plugin
 // http://wenzhixin.net.cn/p/multiple-select/docs/
 // https://github.com/wenzhixin/multiple-select
 //
 // @author Sufflavus https://github.com/Sufflavus
 // @version 1.1.0 
 
-ko.bindingHandlers.multiSelect = function(ko) {
+ko.bindingHandlers.multipleSelect = function(ko) {
 
 	function init(element, valueAccessor, allBindings, viewModel, bindingContext) {			
 		var $element = $(element);	
 		var bindingValue = valueAccessor() || {};			
-		var multiSelectConfig = bindingValue.multiSelectConfig || {};	
+		var multipleSelectConfig = bindingValue.multipleSelectConfig || {};	
 		
 		var initialEvents = {
-			onClick: multiSelectConfig.onClick,
-			onCheckAll: multiSelectConfig.onCheckAll,
-			onUncheckAll: multiSelectConfig.onUncheckAll
+			onClick: multipleSelectConfig.onClick,
+			onCheckAll: multipleSelectConfig.onCheckAll,
+			onUncheckAll: multipleSelectConfig.onUncheckAll
 		};
 		
-		multiSelectConfig.onClick = function(){ 
+		multipleSelectConfig.onClick = function(){ 
 			updateSelectedValuesBinding();	 
 
 			if(initialEvents.onClick){
@@ -26,7 +26,7 @@ ko.bindingHandlers.multiSelect = function(ko) {
 			}			
 		};
 
-		multiSelectConfig.onCheckAll = function(){ 
+		multipleSelectConfig.onCheckAll = function(){ 
 			updateSelectedValuesBinding();	
 
 			if(initialEvents.onCheckAll){
@@ -34,7 +34,7 @@ ko.bindingHandlers.multiSelect = function(ko) {
 			}			 
 		};
 	 
-		multiSelectConfig.onUncheckAll = function(){ 
+		multipleSelectConfig.onUncheckAll = function(){ 
 			updateSelectedValuesBinding();	
 			
 			if(initialEvents.onUncheckAll){
@@ -42,7 +42,7 @@ ko.bindingHandlers.multiSelect = function(ko) {
 			}			 
 		};
 
-		$element.multipleSelect(multiSelectConfig);
+		$element.multipleSelect(multipleSelectConfig);
 		
 		if(bindingValue.selectedValues){			
 			var valueUnwrapped = ko.unwrap(bindingValue.selectedValues);
