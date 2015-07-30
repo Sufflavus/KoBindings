@@ -5,7 +5,7 @@
 // @author Sufflavus https://github.com/Sufflavus
 // @version 1.1.0 
 
-ko.bindingHandlers.multipleSelect = function(ko) {
+ko.bindingHandlers.multipleSelect = function($, ko) {
 
 	function init(element, valueAccessor, allBindings, viewModel, bindingContext) {			
 		var $element = $(element);	
@@ -71,4 +71,4 @@ ko.bindingHandlers.multipleSelect = function(ko) {
         update: update
     };	
 	
-}(ko);
+}($, ko);

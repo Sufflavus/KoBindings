@@ -6,6 +6,8 @@
 
 2. ko-dropzone-binding - custom binding for [dropzonejs](http://www.dropzonejs.com/)
 
+3. ko-numeric-binding - custom binding for numeric-only values (0, 1, 2..)
+
 ##1. ko-multiple-select-binding
 A KnockoutJS custom binding that applies a [Multiple select](http://wenzhixin.net.cn/p/multiple-select/docs/) to the standart 'select' element
 
@@ -85,8 +87,7 @@ A KnockoutJS custom binding that applies a [dropzone](http://www.dropzonejs.com/
   4.  ko-dropzone-binding.js
 
 ```html
-<head>
-    <link rel="stylesheet" href="libs/Dropzone/css/basic.css" />
+<head>    
     <link rel="stylesheet" href="libs/Dropzone/css/dropzone.css" />
 </head>
 <body>
@@ -137,7 +138,50 @@ See working [example](https://github.com/Sufflavus/KoBindings/blob/master/demos/
 ###Parameters
 * dropzoneOptions: set specific settings for dropzonejs plugin (regular js-object)
 
-**Note:** Parameter [url](http://www.dropzonejs.com/#config-url) has to be specified in object dropzoneOptions. You can also provide a function that will be called with files and must return the url  
+**Note:** Parameter [url](http://www.dropzonejs.com/#config-url) has to be specified in object dropzoneOptions. You can also provide a function that will be called with files and must return the url 
+
+##3. ko-numeric-binding
+A KnockoutJS custom binding for numeric-only values (updates value on keydown, blur, paste)
+
+###Setup & Dependencies
+  1.  [jQuery](http://jquery.com/download/) 1.11.2 or later
+  2.  [KnockoutJS](http://knockoutjs.com/downloads/index.html) 3.2.0 or later    
+  3.  ko-numeric-binding.js
+
+```html
+<head>        
+</head>
+<body>
+
+    <script src="libs/jQuery/jquery-1.11.2.min.js"></script>    
+    <script src="libs/Knockout/knockout-3.2.0.js"></script>    
+    <script src="../src/ko-numeric-binding.js"></script>    
+</body>
+```
+
+###Usage
+A numeric-only text input
+
+```html
+<input data-bind="numeric: value"/>  
+```
+
+###Examples
+**Example: Simple numeric-only text input**
+
+```js
+<script type="text/javascript">
+    var viewModel = {
+      value: ko.observable(1)
+    };
+</script>
+```
+
+```html
+<input data-bind="numeric: value"/>  
+```
+
+See working [example](https://github.com/Sufflavus/KoBindings/blob/master/demos/numeric.html)
 
 ## LICENSE
 [The MIT License](https://github.com/Sufflavus/KoBindings/blob/master/LICENSE)

@@ -1,31 +1,33 @@
-// Custom binding for numeric-only values
+// Custom binding for numeric-only values (updates value on keydown)
 //
 // @author Sufflavus https://github.com/Sufflavus
 // @version 1.1.0 
 
-ko.bindingHandlers.numeric = function(ko) {
+ko.bindingHandlers.numeric = function($, ko) {
+    var numbersRegex = /^\d+$/;
+
+    var keyCodes = {
+        "backspace": 8,
+        "tab": 9,
+        "end": 35,
+        "right": 39,
+        "inst": 45,
+        "del": 46,
+        "0": 48,
+        "9": 57,
+        "c": 67,
+        "v": 86,
+        "num0": 96,
+        "num9": 105,
+        "f5": 116,
+    }
 
 	function init(element, valueAccessor, allBindings, viewModel, bindingContext) {	
-    
-        var bindingValue = valueAccessor() || {};  
-        var value =  bindingValue.value;    
-        var options = bindingValue.numericOptions || {}; 
-
-        if(options){
-        	options.min = options.min ? toInt(options.min) : 0;
-        	
-        	if(options.max){
-        		options.max = toInt(options.max);
-
-        		if(options.max < options.min){
-        			throw new Error("Max option should be more or equal than Min option");
-        		}
-        	}        	
-        }
-
+        var koValue = valueAccessor() || {};           
+        
         $(element).keydown(function(event) {        	
         	// code from http://stackoverflow.com/questions/17048468/make-an-input-only-numeric-type-on-knockout
-            // Allow: backspace, delete, tab
+            // Allow: backspace, delete, tab            
             if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 ||
                 // Allow: F5
                 (event.keyCode == 116) ||
@@ -44,111 +46,71 @@ ko.bindingHandlers.numeric = function(ko) {
                     event.preventDefault();
                 }
             }
-        }).change(function (e) {
-            console.log("change");
-            // paste from context menu
-            var inputValue = $(this).val();
-            var parsedValue = toInt(inputValue);
-            if (isNaN(parsedValue) || inputValue != parsedValue) {
-                value("");                
-                return;
-            }
-            value($(this).val());
-        }).keyup(function () {
-            console.log("keyup");
-            if (!options) {                
-                value($(this).val());                
-                return;
-            }
+        }).change(function (e) { // paste from context menu                   
+            $element = $(this);     
+            onInputValueChanged($element, koValue);                          
+        }).bind('input propertychange', function() { // paste from context menu          
+            $element = $(this);     
+            onInputValueChanged($element, koValue);  
+        }).bind('paste', function() { // paste from context menu    
 
-            var inputValue = $(this).val();
-            
-            if (options.max && inputValue > options.max) {
-                inputValue = options.max;
-                value(inputValue);                
-            }           
-        }).blur(function() {
-            console.log("blur");
-            if (!options) {
-                value($(this).val());
-                return;
-            }
-            
-            var inputValue = $(this).val();
-            
-            if ((options.min || options.min == 0) && inputValue <= options.min) {
-                inputValue = options.min;
-                value(inputValue);                
-            }
+        }).keyup(function () {     
+
+        }).blur(function() {            
+            $element = $(this);   
+            onInputValueChanged($element, koValue);                         
         });
 	}
+
+    function onInputValueChanged($element, koValue){
+        var inputValue = $element.val();
+        if(isNullableNumber(inputValue)){                
+            koValue(inputValue);
+            koValue.valueHasMutated();                
+        } else{
+            koValue("");
+            $element.val("");
+        }    
+    }
 	
-	function update(element, valueAccessor, allBindings) {
-        console.log("update");
-        var bindingValue = valueAccessor() || {};  
-        var value =  bindingValue.value;    
-        var valueUnwrapped = ko.unwrap(value);
-        var options = bindingValue.numericOptions || {};         
+	function update(element, valueAccessor, allBindings) {               
+        var koValue = valueAccessor();          
+        var valueUnwrapped = ko.unwrap(koValue);          
         var $element = $(element);
-        
-        var parsedValue = toInt(valueUnwrapped);
-        if (isNaN(parsedValue) || valueUnwrapped != parsedValue) {
-            parsedValue="";
-            value("");
+
+        if(!isNullableNumber(valueUnwrapped)){                
+            koValue("");
+            $element.val("");
             return;
-        }
+        }    
 
-        if(options){
-            options.min = options.min ? toInt(options.min) : 0;
-            
-            if(options.max){
-                options.max = toInt(options.max);
-
-                if(options.max < options.min){
-                    throw new Error("Max option should be more or equal than Min option");
-                }
-            }           
-        }
-
-        if(options && options.max && parsedValue > options.max){
-            parsedValue = options.max;
-            value(parsedValue);
-            $element.val(parsedValue);
-            return;
-        }
-        
         // code from http://stackoverflow.com/questions/26263169/how-to-retain-cursor-position-when-updating-a-knockout-js-observable-in-an-exten
         if($element.is(":focus")){
-	        var caretPosition = getCaretPosition($element[0]);
-	        console.log(caretPosition);            
-            $element.val(parsedValue);
+	        var caretPosition = getCaretPosition($element[0]);	                    
+            $element.val(valueUnwrapped);
 	        setCaretPosition($element[0], caretPosition);
 	    }else{
-	    	$element.val(parsedValue);
+	    	$element.val(valueUnwrapped);
 	    }
     }
 
-    function toInt(value){
-    	return parseInt(value, 10);
+    function isNullableNumber(value){
+        return numbersRegex.test(value) && !!value;
     }
 
     // Code from http://stackoverflow.com/questions/2897155/get-cursor-position-in-characters-within-a-text-input-field
 	function getCaretPosition (element) {
 		var caretPosition = 0;
 
-		// IE Support
-		if (document.selection) {
+		if (document.selection) { // IE Support
 			element.focus();
 			// To get cursor position, get empty selection range
-			var sel = document.selection.createRange();
+			var selectionRange = document.selection.createRange();
 			// Move selection start to 0 position
-			sel.moveStart ('character', -element.value.length);
+			selectionRange.moveStart ('character', -element.value.length);
 			// The caret position is selection length
-			caretPosition = sel.text.length;
-		}
-
-		// other browsers support
-		else if (element.selectionStart || element.selectionStart == '0'){
+			caretPosition = selectionRange.text.length;
+		} else if (element.selectionStart || element.selectionStart == '0'){ // other browsers support
 			caretPosition = element.selectionStart;
 		}
 
@@ -160,19 +122,17 @@ ko.bindingHandlers.numeric = function(ko) {
 		if(!element){
 			return;
 		}
-		if(element.createTextRange) {
+        
+		if(element.createTextRange) {            
 			var range = element.createTextRange();
 			range.move('character', caretPosition);
 			range.select();
 		}
 		else {
-			if(element.selectionStart) {
-				element.focus();
+            element.focus();
+			if(element.selectionStart) {				
 				element.setSelectionRange(caretPosition, caretPosition);
-			}
-			else{
-				element.focus();
-			}
+			}			
 		}
 	}
 	
@@ -181,4 +141,4 @@ ko.bindingHandlers.numeric = function(ko) {
         update: update
     };	
 	
-}(ko);
+}($, ko);

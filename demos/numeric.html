@@ -1,8 +1,7 @@
 <html>
 	<head>
 		<meta name="Content-Type" content="text/html; charset=utf8"/>				
-		<title>Numeric input demo</title>	
-		<link rel="stylesheet" href="libs/MultipleSelect/css/multiple-select.css" />
+		<title>Numeric input demo</title>			
 		<link rel="stylesheet" href="css/demo.common.css" />
 		<style>
 			
@@ -11,26 +10,17 @@
 	<body>
 		<div class="content">
 			<div>
-				<h1>Examples for multiple select knockout binding</h1>
-				Multiple select is a jQuery plugin to select multiple elements with checkboxes: <a href="http://wenzhixin.net.cn/p/multiple-select/docs/" target="blank">Multiple select</a>
+				<h1>Examples for Numeric knockout binding</h1>
+				Custom binding for numeric-only values (updates value on keydown, blur, paste). Only numbers (0, 1, 2...) and empty value are allowed
 			</div>
 			<div class="example-block">	
-				<h2>Multi select with placeholder but without 'Select all'</h2>
+				<h2>Input with preset value</h2>
 				<div class="element">
-					<input data-bind="numeric: { value: value, numericOptions:{max: 10} }, valueUpdate='afterkeydown'"/>
-					<br/>
-					<input data-bind="value: value, valueUpdate='keypress'"/>
-					<br/>
-					<input data-bind="value: value, valueUpdate='keypress'"/>
-					<br/>
-					<label data-bind="text: value"/>
+					<input data-bind="numeric: value"/>					
 				</div>
 				<div class="test">
-					<!-- Selected items: 
-					<span data-bind="visible: selectedMonthes1().length === 0"> - </span>
-					<span data-bind="foreach: selectedMonthes1">
-						<span data-bind="text: $data"></span>
-					</span> -->	
+					Input value: 
+					<span data-bind="text: value"></span>					
 				</div>	
 				<div class="clear-fix"></div>				
 			</div>			
